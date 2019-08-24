@@ -1,0 +1,14 @@
+,[CHECKVERSION],3.0.0.13
+HSPI_ULTRA1WIRE3.exe,.,0
+hspi_ultra1wire3.exe.config,.,0
+SQLite.Interop.dll,.\bin\hspi_ultra1wire3,0
+System.Data.SQLite.dll,.\bin\hspi_ultra1wire3,0
+hspi_ultra1wire3.aspx,.\html\hspi_ultra1wire3,0
+Web.Config,.\html\hspi_ultra1wire3,0
+Ultra1Wire3_HSPI_Users_Guide.pdf,.\html\hspi_ultra1wire3,0
+amcharts.js,.\html\hspi_ultra1wire3\js,0
+dragIcon.gif,.\html\hspi_ultra1wire3\js\images,0
+dragIconH.gif,.\html\hspi_ultra1wire3\js\images,0
+lens.png,.\html\hspi_ultra1wire3\js\images,0
+images.zip,[DELFILES],.\html\images\hspi_ultra1wire3
+images.zip,[UNZIP],.\html\images\hspi_ultra1wire3
