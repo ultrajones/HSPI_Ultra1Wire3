@@ -2294,7 +2294,11 @@ Module HS_HA7E
           End If
         Loop While iTries < iAttempts
 
-        UpdateOneWireSensor(deviceId, "Environmental", "Temperature", "A", ds18S20.ROMId, Value)
+        Select Case Value
+          Case 185, 30.875
+          Case Else
+            UpdateOneWireSensor(deviceId, "Environmental", "Temperature", "A", ds18S20.ROMId, Value)
+        End Select
 
       Next
 
@@ -2381,7 +2385,11 @@ Module HS_HA7E
           End If
         Loop While iTries < iAttempts
 
-        UpdateOneWireSensor(deviceId, "Environmental", "Temperature", "A", ds18B20.ROMId, Value)
+        Select Case Value
+          Case 185, 30.875
+          Case Else
+            UpdateOneWireSensor(deviceId, "Environmental", "Temperature", "A", ds18B20.ROMId, Value)
+        End Select
 
       Next
 
