@@ -3297,6 +3297,60 @@ Module HS_OWSERVER
 
       End If
 
+      '
+      ' Get the EDS2040 (Temperature, Humidity, Discrete Input, and External Probe Support with High Power Radio)
+      '
+      Dim xmlEDS2041s As XmlNodeList = xmlDoc.SelectNodes("//xsi:owd_EDS2040", nsMgr)
+      If xmlEDS2041s.Count > 0 Then
+        For Each xmlEDS2041 As XmlNode In xmlEDS2041s
+          Dim ROMId As String = xmlEDS2041.SelectSingleNode("xsi:EUI", nsMgr).InnerText
+          Dim Temperature As String = xmlEDS2041.SelectSingleNode("xsi:Temperature", nsMgr).InnerText
+          Dim Humidity As String = xmlEDS2041.SelectSingleNode("xsi:Humidity", nsMgr).InnerText
+
+          Dim Value1 As Single = Math.Abs(Single.Parse(Humidity, nfi))
+          UpdateOneWireSensor(OWServer.DeviceId, "Environmental", "Humidity", "A", ROMId, Value1)
+
+          Dim Value2 As Single = OWServer.ConvertTemperature(Temperature, bFarenheight)
+          UpdateOneWireSensor(OWServer.DeviceId, "Environmental", "Temperature", "A", ROMId, Value2)
+
+          '
+          ' Process External Probes
+          '
+          Dim OW1Value As String = xmlEDS2041.SelectSingleNode("xsi:OW1Value", nsMgr).InnerText
+          Dim OW2Value As String = xmlEDS2041.SelectSingleNode("xsi:OW2Value", nsMgr).InnerText
+          Dim OW3Value As String = xmlEDS2041.SelectSingleNode("xsi:OW3Value", nsMgr).InnerText
+
+          Dim OW1Health As String = xmlEDS2041.SelectSingleNode("xsi:OW1Health", nsMgr).InnerText
+          Dim OW2Health As String = xmlEDS2041.SelectSingleNode("xsi:OW2Health", nsMgr).InnerText
+          Dim OW3Health As String = xmlEDS2041.SelectSingleNode("xsi:OW3Health", nsMgr).InnerText
+
+          Dim OW1ROMID As String = xmlEDS2041.SelectSingleNode("xsi:OW1ROMID", nsMgr).InnerText
+          Dim OW2ROMID As String = xmlEDS2041.SelectSingleNode("xsi:OW2ROMID", nsMgr).InnerText
+          Dim OW3ROMID As String = xmlEDS2041.SelectSingleNode("xsi:OW3ROMID", nsMgr).InnerText
+
+          Dim OW1DataType As String = xmlEDS2041.SelectSingleNode("xsi:OW1DataType", nsMgr).InnerText
+          Dim OW2DataType As String = xmlEDS2041.SelectSingleNode("xsi:OW2DataType", nsMgr).InnerText
+          Dim OW3DataType As String = xmlEDS2041.SelectSingleNode("xsi:OW3DataType", nsMgr).InnerText
+
+          If OW1DataType = "Temperature" AndAlso OW1Health > 0 Then
+            Dim OW1Value1 As Single = OWServer.ConvertTemperature(OW1Value, bFarenheight)
+            UpdateOneWireSensor(OWServer.DeviceId, "Environmental", "Temperature", "A", OW1ROMID, OW1Value1)
+          End If
+
+          If OW2DataType = "Temperature" AndAlso OW2Health > 0 Then
+            Dim OW2Value2 As Single = OWServer.ConvertTemperature(OW1Value, bFarenheight)
+            UpdateOneWireSensor(OWServer.DeviceId, "Environmental", "Temperature", "A", OW2ROMID, OW2Value2)
+          End If
+
+          If OW3DataType = "Temperature" AndAlso OW3Health > 0 Then
+            Dim OW3Value3 As Single = OWServer.ConvertTemperature(OW1Value, bFarenheight)
+            UpdateOneWireSensor(OWServer.DeviceId, "Environmental", "Temperature", "A", OW3ROMID, OW3Value3)
+          End If
+
+        Next
+
+      End If
+
     Catch pEx As WebException
       '
       ' Process the error
