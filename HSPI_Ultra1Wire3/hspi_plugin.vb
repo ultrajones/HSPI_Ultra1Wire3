@@ -3308,7 +3308,7 @@ Module HS_OWSERVER
       '
       ' Get the EDS2040 (Temperature, Humidity, Discrete Input, and External Probe Support with High Power Radio)
       '
-      Dim xmlEDS2041s As XmlNodeList = xmlDoc.SelectNodes("//xsi:owd_EDS2040", nsMgr)
+      Dim xmlEDS2041s As XmlNodeList = xmlDoc.SelectNodes("//xsi:owd_EDS2041", nsMgr)
       If xmlEDS2041s.Count > 0 Then
         For Each xmlEDS2041 As XmlNode In xmlEDS2041s
           Dim ROMId As String = xmlEDS2041.SelectSingleNode("xsi:EUI", nsMgr).InnerText
