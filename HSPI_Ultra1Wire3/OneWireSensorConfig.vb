@@ -217,7 +217,7 @@ Public Class OneWireSensorConfig
       Case "28" : Return "Digital Thermometer"
       Case "7E" : Return "EDS Environmental Sensor"
       Case Else
-        If Regex.IsMatch(ROMId, "^(00|D8)") = True Then
+        If Regex.IsMatch(ROMId, "^(00|D8|80)") = True Then
           Return "EDS Environmental Sensor"
         Else
           Return "Unsupported"
@@ -236,7 +236,7 @@ Public Class OneWireSensorConfig
       Case "28" : Return "DS18B20"
       Case "7E" : Return "EDS"
       Case Else
-        If Regex.IsMatch(ROMId, "^(00|D8)") = True Then
+        If Regex.IsMatch(ROMId, "^(00|D8|80)") = True Then
           Return "EDS"
         Else
           Return "Unsupported"

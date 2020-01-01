@@ -3306,7 +3306,7 @@ Module HS_OWSERVER
       End If
 
       '
-      ' Get the EDS2040 (Temperature, Humidity, Discrete Input, and External Probe Support with High Power Radio)
+      ' Get the EDS2041 (Temperature, Humidity, Discrete Input, and External Probe Support with High Power Radio)
       '
       Dim xmlEDS2041s As XmlNodeList = xmlDoc.SelectNodes("//xsi:owd_EDS2041", nsMgr)
       If xmlEDS2041s.Count > 0 Then
