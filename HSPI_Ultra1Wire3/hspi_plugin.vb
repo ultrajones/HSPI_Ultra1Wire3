@@ -2792,7 +2792,8 @@ Module HS_OWSERVER
       ' Get the XML data
       '
       Using ResponseStream As IO.Stream = WebRequest.Create(strURL).GetResponse().GetResponseStream()
-        xmlDoc.Load(ResponseStream)
+        xmlDoc.Load("file:///C:/Users/rjones/Desktop/Detail%20XML.xml")
+        'xmlDoc.Load(ResponseStream)
       End Using
 
       Dim nsMgr As New XmlNamespaceManager(xmlDoc.NameTable)
@@ -3286,17 +3287,17 @@ Module HS_OWSERVER
           Dim OW2DataType As String = xmlEDS2040.SelectSingleNode("xsi:OW2DataType", nsMgr).InnerText
           Dim OW3DataType As String = xmlEDS2040.SelectSingleNode("xsi:OW3DataType", nsMgr).InnerText
 
-          If OW1DataType = "Temperature" AndAlso OW1Health > 0 Then
+          If Regex.IsMatch(OW1DataType, "^(DS18[AB]20|Temperature)$") AndAlso OW1Health > 0 Then
             Dim OW1Value1 As Single = OWServer.ConvertTemperature(OW1Value, bFarenheight)
             UpdateOneWireSensor(OWServer.DeviceId, "Environmental", "Temperature", "A", OW1ROMID, OW1Value1)
           End If
 
-          If OW2DataType = "Temperature" AndAlso OW2Health > 0 Then
+          If Regex.IsMatch(OW1DataType, "^(DS18[AB]20|Temperature)$") AndAlso OW2Health > 0 Then
             Dim OW2Value2 As Single = OWServer.ConvertTemperature(OW1Value, bFarenheight)
             UpdateOneWireSensor(OWServer.DeviceId, "Environmental", "Temperature", "A", OW2ROMID, OW2Value2)
           End If
 
-          If OW3DataType = "Temperature" AndAlso OW3Health > 0 Then
+          If Regex.IsMatch(OW1DataType, "^(DS18[AB]20|Temperature)$") AndAlso OW3Health > 0 Then
             Dim OW3Value3 As Single = OWServer.ConvertTemperature(OW1Value, bFarenheight)
             UpdateOneWireSensor(OWServer.DeviceId, "Environmental", "Temperature", "A", OW3ROMID, OW3Value3)
           End If
@@ -3340,17 +3341,17 @@ Module HS_OWSERVER
           Dim OW2DataType As String = xmlEDS2041.SelectSingleNode("xsi:OW2DataType", nsMgr).InnerText
           Dim OW3DataType As String = xmlEDS2041.SelectSingleNode("xsi:OW3DataType", nsMgr).InnerText
 
-          If OW1DataType = "Temperature" AndAlso OW1Health > 0 Then
+          If Regex.IsMatch(OW1DataType, "^(DS18[AB]20|Temperature)$") AndAlso OW1Health > 0 Then
             Dim OW1Value1 As Single = OWServer.ConvertTemperature(OW1Value, bFarenheight)
             UpdateOneWireSensor(OWServer.DeviceId, "Environmental", "Temperature", "A", OW1ROMID, OW1Value1)
           End If
 
-          If OW2DataType = "Temperature" AndAlso OW2Health > 0 Then
+          If Regex.IsMatch(OW1DataType, "^(DS18[AB]20|Temperature)$") AndAlso OW2Health > 0 Then
             Dim OW2Value2 As Single = OWServer.ConvertTemperature(OW1Value, bFarenheight)
             UpdateOneWireSensor(OWServer.DeviceId, "Environmental", "Temperature", "A", OW2ROMID, OW2Value2)
           End If
 
-          If OW3DataType = "Temperature" AndAlso OW3Health > 0 Then
+          If Regex.IsMatch(OW1DataType, "^(DS18[AB]20|Temperature)$") AndAlso OW3Health > 0 Then
             Dim OW3Value3 As Single = OWServer.ConvertTemperature(OW1Value, bFarenheight)
             UpdateOneWireSensor(OWServer.DeviceId, "Environmental", "Temperature", "A", OW3ROMID, OW3Value3)
           End If
